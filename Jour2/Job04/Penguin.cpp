@@ -13,7 +13,7 @@ Penguin::Penguin(const Penguin& other)
 Penguin::Penguin(string name, double swimSpeed, double walkSpeed, double slideSpeed)
     : name(name), Aquatic(swimSpeed), Terrestrial(walkSpeed), slideSpeed(slideSpeed) {}
 
-shared_ptr<vector<Penguin> > Penguin::Penguins = make_shared<vector<Penguin> >();
+vector<shared_ptr<Penguin>> Penguin::Penguins = vector<shared_ptr<Penguin>>();
 
 Penguin::~Penguin() {}
 
@@ -34,11 +34,11 @@ void Penguin::slide() const {
 }
 
 void Penguin::addPenguin(shared_ptr<Penguin> penguin) {
-    Penguins->push_back(*penguin);
+    Penguins.push_back(penguin);
 }
 
 void Penguin::removePenguin(shared_ptr<Penguin> penguin) {
-    Penguins->erase(Penguins->begin());
+    Penguins.erase(Penguins.begin());
     cout << "Penguin removed" << endl;
 }
 
@@ -90,7 +90,7 @@ double Penguin::courseTravelTime() const{
 }
 
 void Penguin::showTravelTime() {
-    for (auto penguin : *Penguins) {
-        cout << penguin.getName() << " will take " << penguin.courseTravelTime() << " seconds to complete the course." << endl;
+    for (auto penguin : Penguins) {
+        cout << penguin->name << " will take " << penguin-> courseTravelTime() << " seconds to complete the course." << endl;
     }
 }

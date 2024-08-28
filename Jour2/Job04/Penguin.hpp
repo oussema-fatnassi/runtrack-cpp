@@ -34,7 +34,7 @@ public:
 
     double courseTravelTime() const;
 
-    static shared_ptr<vector<Penguin> > Penguins;
+    static vector<shared_ptr<Penguin> > Penguins;
     void addPenguin(shared_ptr<Penguin> penguin);
     void removePenguin(shared_ptr<Penguin> penguin);
 
