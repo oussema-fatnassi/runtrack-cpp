@@ -6,11 +6,13 @@
 #include "Sword.hpp"
 #include "Player.hpp"
 #include "Enemy.hpp"
+#include "Container.hpp"
 #include <iostream>
 using namespace std;
 
 Player player("Player", 100, Vector2d(0, 0));
 Enemy enemy("Enemy", 100, Vector2d(5, 5));
+Container container;
 
 int main()
 {
@@ -21,6 +23,12 @@ int main()
     player.addWeapon(bow);
     player.addWeapon(spear);
     player.addWeapon(sword);
+
+    container.add(std::make_shared<Player>(player));
+    container.add(std::make_shared<Enemy>(enemy));
+    
+    container.update();
+    container.draw();
 
     while (player.isAlive() && enemy.isAlive())
     {
